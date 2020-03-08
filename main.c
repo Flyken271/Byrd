@@ -27,25 +27,6 @@ static gboolean
 int main(int argc, char *argv[])
 {
 	
-	config_t cfg;
-	//config_setting_t *setting;
-	const char *str;
-	
-	config_init(&cfg);
-	
-	if(!config_read_file(&cfg, "Byrd.conf"))
-	{
-		fprintf(stderr, "%s:%d - %s\n", config_error_file(&cfg), config_error_line(&cfg), config_error_text(&cfg));
-		config_destroy(&cfg);
-		return(EXIT_FAILURE);
-	}	
-	
-	if(config_lookup_string(&cfg, "bg-color", &str))
-	{
-		printf("Background-Color: %s\n\n", str);
-	}else{
-		fprintf(stderr, "No 'bg-color' setting in configuration file.\n");
-	}
 	
 	GtkWidget *window, *terminal;
 	/* Init GTK, the window, the term */
