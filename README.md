@@ -1,3 +1,16 @@
 # Byrd
 
 A simple and easy terminal for linux written in C.
+
+
+### Installation
+
+1. `git clone https://github.com/Flyken271/Byrd.git`
+2. `cd Byrd`
+3. `sudo mkdir /opt/Byrd/ && mkdir /usr/bin/Byrd/`
+4. `sudo cp Byrd /opt/Byrd/`
+5. `sudo cp -s /opt/Byrd/Byrd /usr/bin/Byrd/`
+6. `export PATH=$PATH:/opt/Byrd/Byrd`
+
+### Dependencies
+`libconfig vte-2.91`
