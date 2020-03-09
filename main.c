@@ -11,7 +11,7 @@
 #define CLR_GDK(x) (const GdkRGBA){ .red = CLR_16(CLR_R(x)), \
                                     .green = CLR_16(CLR_G(x)), \
                                     .blue = CLR_16(CLR_B(x)), \
-                                    .alpha = 0 }
+                                    .alpha = 1 }
 
 
 
@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
 	terminal = vte_terminal_new();
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title(GTK_WINDOW(window), "Byrd");
-
+	
 	/* Start new shell */
 	gchar **envp = g_get_environ();
 	gchar **command = (gchar *[]){g_strdup(g_environ_getenv(envp, "SHELL")), NULL };
@@ -52,30 +52,27 @@ int main(int argc, char* argv[])
 
 	vte_terminal_set_scroll_on_keystroke(VTE_TERMINAL(terminal), TRUE);
 	vte_terminal_set_mouse_autohide(VTE_TERMINAL(terminal), TRUE);
-	
-/*
-vte_terminal_set_colors(VTE_TERMINAL(terminal),
-    &CLR_GDK(0xffffff),
-    &CLR_GDK(0xA3BABF),
-    (const GdkRGBA[]){
-        CLR_GDK(0x111111),
-        CLR_GDK(0xd36265),
-        CLR_GDK(0xaece91),
-        CLR_GDK(0xe7e18c),
-        CLR_GDK(0x5297cf),
-        CLR_GDK(0x963c59),
-        CLR_GDK(0x5E7175),
-        CLR_GDK(0xbebebe),
-        CLR_GDK(0x666666),
-        CLR_GDK(0xef8171),
-        CLR_GDK(0xcfefb3),
-        CLR_GDK(0xfff796),
-        CLR_GDK(0x74b8ef),
-        CLR_GDK(0xb85e7b),
-        CLR_GDK(0xA3BABF),
-        CLR_GDK(0xffffff)
-}, 16);
-*/
+	vte_terminal_set_colors(VTE_TERMINAL(terminal),
+		&CLR_GDK(0xffffff),
+		&(GdkRGBA){ .alpha = 0.35 },
+		(const GdkRGBA[]){
+			CLR_GDK(0x111111),
+			CLR_GDK(0xd36265),
+			CLR_GDK(0xaece91),
+			CLR_GDK(0xe7e18c),
+			CLR_GDK(0x5297cf),
+			CLR_GDK(0x963c59),
+			CLR_GDK(0x5E7175),
+			CLR_GDK(0xbebebe),
+			CLR_GDK(0x666666),
+			CLR_GDK(0xef8171),
+			CLR_GDK(0xcfefb3),
+			CLR_GDK(0xfff796),
+			CLR_GDK(0x74b8ef),
+			CLR_GDK(0xb85e7b),
+			CLR_GDK(0xA3BABF),
+			CLR_GDK(0xffffff)
+	}, 16);
 	//vte_terminal_set_color_background(VTE_TERMINAL(terminal), CLR_GDK(0xffffff));
 
 	
@@ -88,6 +85,7 @@ vte_terminal_set_colors(VTE_TERMINAL(terminal),
 	/* Put Widgets Together and Run Main Loop */
 	gtk_container_add(GTK_CONTAINER(window), terminal);
 	gtk_widget_show_all(window);
+	gtk_widget_set_opacity(GTK_WIDGET(window), 0.65);
 	gtk_main();
 
 
