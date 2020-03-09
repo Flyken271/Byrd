@@ -17,4 +17,4 @@ A simple and easy terminal for linux written in C.
 
 
 ### Tips
-[Buy Me A Coffee](https://www.buymeacoffee.com/DFLhqou)
+[Buy Me A Coffee](https://www.buymeacoffee.com/DFLhquo)
