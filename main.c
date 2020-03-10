@@ -28,6 +28,31 @@ int main(int argc, char* argv[])
 {
 	
 	
+	/* Configuration init */
+	config_t cfg;
+	//const char *str;
+	double *bgalpha;
+	
+	config_init(&cfg);
+	
+	if(! config_read_file(&cfg, "Byrd.conf"))
+	{
+		fprintf(stderr, "%s:%d - %s\n", config_error_file(&cfg),
+			config_error_line(&cfg), config_error_text(&cfg));
+		config_destroy(&cfg);
+		return(EXIT_FAILURE);
+	}
+
+	if(config_lookup(&cfg, "config") != NULL){
+		double alpha;
+		
+		if(config_lookup_float(&cfg, "alpha", &alpha))
+		{
+			printf("Alpha: %6.2f\n", alpha);	
+			bgalpha = &alpha;
+		}
+	}
+			
 	GtkWidget *window, *terminal;
 	/* Init GTK, the window, the term */
 	gtk_init(&argc, &argv);
@@ -83,11 +108,12 @@ int main(int argc, char* argv[])
 	g_signal_connect(terminal, "window-title-changed", G_CALLBACK(on_title_changed), GTK_WINDOW(window));
 
 	/* Put Widgets Together and Run Main Loop */
+	//printf("\n\n\n\nAlpha: %6.2f\n\n\n\n\n", *bgalpha);
 	gtk_container_add(GTK_CONTAINER(window), terminal);
 	gtk_widget_show_all(window);
-	gtk_widget_set_opacity(GTK_WIDGET(window), 0.65);
+	//gtk_widget_set_opacity(GTK_WIDGET(window), *bgalpha);
 	gtk_main();
-
+	
 
 }
 
