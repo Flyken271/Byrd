@@ -12,6 +12,9 @@ A simple and easy terminal for linux written in C.
 5. `sudo cp -s /opt/Byrd/Byrd /usr/bin/Byrd/`
 6. `add "export PATH=$PATH:/opt/Byrd/Byrd" to .bashrc or something that applies to you`
 
+##Configuration
+The configuration file needs to be in the directory where Byrd binary is, you can compile from source and change where the conf file is needed to be; the configuration file is pre-loaded with a single option for alpha, it uses floats, 0-1, 1 being fully visible, 0 being fully transparent.
+
 ### Dependencies
 `libconfig vte-2.91`
 
